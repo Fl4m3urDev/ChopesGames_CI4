@@ -221,11 +221,13 @@ class Visiteur extends BaseController
             'txtVille'    => 'required',
             'txtCP' => 'required',
             'txtEmail' => 'required|valid_email|is_unique[client.EMAIL,id,{id}]',
-            'txtMdp'    => 'required'
+            'txtMdp'    => 'required',
+            'txtConfirmMdp'    => 'required|matches[txtMdp]'
         ];
 
         if (!empty($session->get('statut'))) //régles de validation pour modification
             $rules['txtEmail'] = 'required|valid_email';
+            $rules['txtConfirmMdp'] = 'required|matches[txtMdp]';
 
         $messages = [ //message à renvoyer en cas de non respect des règles de validation
             'txtNom' => [
@@ -250,6 +252,10 @@ class Visiteur extends BaseController
             ],
             'txtMdp'    => [
                 'required' => 'Un mot de passe est requis',
+            ],
+            'txtConfirmMdp'    => [
+                'required' => 'Le mot de passe de confirmation est obligatoire',
+                'matches[txtMdp]' => 'Le Mot de Passe doit correspondre à celui entrée ci-dessus',
             ]
         ];
         
@@ -282,7 +288,7 @@ class Visiteur extends BaseController
                 'CODEPOSTAL' => $this->request->getPost('txtCP'),
                 'EMAIL' => $this->request->getPost('txtEmail'),
                 //'MOTDEPASSE' => password_hash($this->request->getPost('txtMdp'), PASSWORD_DEFAULT),
-                'MOTDEPASSE' => $this->request->getPost('txtMdp')
+                'MOTDEPASSE' => $this->request->getPost('txtMdp'),
             ];
 
             if (empty($session->get('statut'))) { // enregistrement

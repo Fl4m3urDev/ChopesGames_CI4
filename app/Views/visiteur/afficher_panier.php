@@ -25,12 +25,12 @@ $session = session();
                     <tr>
                         <td>
                             <?php if (!empty($item['image'])) { ?>
-                                <a href="<?= base_url() . '/index.php/Visiteur/voir_un_produit/' . $item['id'] ?>"><?= img_class($item['image'] . '.jpg', 'image','img_panier')?></a>
+                                <a href="<?php echo base_url() . '/index.php/Visiteur/voir_un_produit/' . $item['id'] ?>"><?php echo img_class($item['image'] . '.jpg', 'image','img_panier')?></a>
                             <?php } else { ?>
-                                <a href="<?= base_url() . '/index.php/Visiteur/voir_un_produit/' . $item['id'] ?>"><img src="<?= base_url() . '/assets/images/nonimage.jpg' ?>" width="80" /></a>
+                                <a href="<?php echo base_url() . '/index.php/Visiteur/voir_un_produit/' . $item['id'] ?>"><img src="<?php echo base_url() . '/assets/images/nonimage.jpg' ?>" width="80" /></a>
                             <?php } ?>
                         </td>
-                        <td><a href="<?= base_url() . '/index.php/Visiteur/voir_un_produit/' . $item['id'] ?>"><?php echo $item['name']; ?></a></td>
+                        <td><a href="<?php echo base_url() . '/index.php/Visiteur/voir_un_produit/' . $item['id'] ?>"><?php echo $item['name']; ?></a></td>
                         <td><?php echo $item['price']; ?>€</td>
                         <td><?php echo form_input(array('name' => 'update['.$item['id'].']', 'type' => 'number', 'class' => 'form-control', 'style' => 'width:75px', 'value' => $item['qty'], 'min' => 1, 'max' => $item['maxi'])); ?></td>
                         <td><?php echo $item['price']*$item['qty']; ?>€</td>

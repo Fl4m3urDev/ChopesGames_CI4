@@ -26,8 +26,8 @@
                   $class = ''; 
               }?> 
           <div class="carousel-item <?php echo $class; ?>">
-            <a href="<?= base_url().'/index.php/Visiteur/voir_un_produit/'.$vitrine["NOPRODUIT"]?>">
-            <?= img_class($vitrine["NOMIMAGE"] . '.jpg', $vitrine["LIBELLE"], 'd-block'); ?>
+            <a href="<?php echo base_url().'/index.php/Visiteur/voir_un_produit/'.$vitrine["NOPRODUIT"]?>">
+            <?php echo img_class($vitrine["NOMIMAGE"] . '.jpg', $vitrine["LIBELLE"], 'd-block'); ?>
             </a>
           </div>
           <?php endforeach;?> 
