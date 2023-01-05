@@ -1,56 +1,89 @@
-
-    <div>
-        <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-md-6">
-                    <div class="col-md-12 container">
-                        <?php echo form_open('Visiteur/s_enregistrer') ?>
-                            <br>
-                            <h3 class="text-center text-primary"><?php echo $TitreDeLaPage ?></h3>
-                            <?PHP if($TitreDeLaPage=='Corriger votre formulaire') echo service('validation')->listErrors();
-                             if(!isset($txtNom)) $txtNom=''; if(!isset($txtPrenom)) $txtPrenom=''; if(!isset($txtAdresse)) $txtAdresse=''; if(!isset($txtVille)) $txtVille=''; if(!isset($txtCP)) $txtCP=''; if(!isset($txtEmail)) $txtEmail=''; ?>
-                                <label for="txtNom" class="text-primary">Nom</label><br>
-                                <input class="form-control" type="input" name="txtNom" value="<?php echo set_value('txtNom', $txtNom); ?>" />
-
-                                <label for="txtPrenom" class="text-primary">Prénom</label><br>
-                                <input class="form-control" type="input" name="txtPrenom" value="<?php echo set_value('txtPrenom', $txtPrenom); ?>" />
-
-                                <label for="txtAdresse" class="text-primary">Adresse</label><br>
-                                <input class="form-control" type="input" name="txtAdresse" value="<?php echo set_value('txtAdresse', $txtAdresse); ?>" />
-
-                                <label for="txtVille" class="text-primary">Ville</label><br>
-                                <input class="form-control" type="input" name="txtVille" value="<?php echo set_value('txtVille', $txtVille); ?>" />
-
-                                <label for="txtCP" class="text-primary">Code Postal</label><br>
-                                <input class="form-control" type="input" name="txtCP" value="<?php echo set_value('txtCP', $txtCP); ?>" />
-
-                                <label for="txtEmail" class="text-primary">Email</label><br>
-                                <input class="form-control" type="input" name="txtEmail" value="<?php echo set_value('txtEmail', $txtEmail); ?>" />
-
-                                <label for="txtMdp" class="text-primary">Mot de passe</label><br>
-                                <input class="form-control" type="password" name="txtMdp" id="mdp" value="<?php echo set_value('txtMdp'); ?>" />
-
-                                <label for="txtMdp" class="text-primary">Confimation du mot de passe</label><br>
-                                <input class="form-control" type="password" name="txtConfirmMdp" id="mdp" value="<?php echo set_value('txtConfirmMdp'); ?>" />
-                                
-                                
-                            <input type="submit" name="submit" class="btn btn-primary btn-md" value="Valider">
-                            <div class="text-primary right">
-                            <a class="btn btn-primary" href="<?php echo site_url('Visiteur/se_connecter') ?>">Se connecter</a>
-                            </div>
-                        </form>
+<div>
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-6">
+                <div class="col-md-12 container">
+                    <?php echo form_open('Visiteur/s_enregistrer') ?>
+                    <br>
+                    <h3 class="text-center text-primary"><?php echo $TitreDeLaPage ?></h3>
+                    <?PHP if ($TitreDeLaPage == 'Corriger votre formulaire') echo service('validation')->listErrors();
+                    if (!isset($txtNom)) $txtNom = '';
+                    if (!isset($txtPrenom)) $txtPrenom = '';
+                    if (!isset($txtAdresse)) $txtAdresse = '';
+                    if (!isset($txtVille)) $txtVille = '';
+                    if (!isset($txtCP)) $txtCP = '';
+                    if (!isset($txtEmail)) $txtEmail = ''; ?>
+                    <p>
+                        <?php
+                        echo form_label('Nom', 'txtNom', ['class' => 'text-primary']);
+                        echo form_input('txtNom', set_value("txtNom"), ['placeholder' => 'Votre Nom', 'class' => 'form-control'], 'text');
+                        ?>
+                    </p>
+                    <p>
+                        <?php
+                        echo form_label('Prenom', 'txtPrenom', ['class' => 'text-primary']);
+                        echo form_input('txtPrenom', set_value("txtPrenom"), ['placeholder' => 'Votre Prenom', 'class' => 'form-control'], 'text');
+                        ?>
+                    </p>
+                    <p>
+                        <?php
+                        echo form_label('Adresse', 'txtAdresse', ['class' => 'text-primary']);
+                        echo form_input('txtAdresse', set_value("txtAdresse"), ['placeholder' => 'Votre Adresse', 'class' => 'form-control'], 'text');
+                        ?>
+                    </p>
+                    <p>
+                        <?php
+                        echo form_label('Ville', 'txtVille', ['class' => 'text-primary']);
+                        echo form_input('txtVille', set_value("txtVille"), ['placeholder' => 'Votre Ville', 'class' => 'form-control'], 'text');
+                        ?>
+                    </p>
+                    <p>
+                        <?php
+                        echo form_label('Code Postal', 'txtCP', ['class' => 'text-primary']);
+                        echo form_input('txtCP', set_value("txtCP"), ['placeholder' => 'Votre Code Postal', 'class' => 'form-control'], 'text');
+                        ?>
+                    </p>
+                    <p>
+                        <?php
+                        echo form_label('Adresse Email', 'txtEmail', ['class' => 'text-primary']);
+                        echo form_input('txtEmail', set_value("txtEmail"), ['placeholder' => 'Votre Adresse Email', 'class' => 'form-control'], 'email');
+                        ?>
+                    </p>
+                    <p>
+                        <?php
+                        echo form_label('Mot de passe', 'txtMdp', ['class' => 'text-primary']);
+                        echo form_password('txtMdp', set_value('txtMdp'), ['placeholder' => 'Votre Mot de passe', 'class' => 'form-control', 'id' => 'mdp'], 'password');
+                        // echo form_label('Voir&nbsp', 'voir', ['class' => 'mt-3 text-primary small']);
+                        // echo form_checkbox('Voir&nbsp', 'voir', false, 'onclick="Affichermasquermdp()"');
+                        ?>
+                    </p>
+                    <p>
+                        <?php
+                        echo form_label('Confimation du mot de passe', 'txtConfirmMdp', ['class' => 'text-primary']);
+                        echo form_password('txtConfirmMdp', set_value('txtConfirmMdp'), ['placeholder' => 'Confimation de votre Mot de passe', 'class' => 'form-control', 'id' => 'mdp'], 'password');
+                        // echo form_label('Voir&nbsp', 'voir', ['class' => 'mt-3 text-primary small']);
+                        // echo form_checkbox('Voir&nbsp', 'voir', false, 'onclick="Affichermasquermdp()"')
+                        ?>
+                    </p>
+                    <?php echo csrf_field();
+                    echo form_submit('submit', 'Valider', ['class' => 'btn btn-primary']);
+                    ?>
+                    <div class="text-primary right">
+                        <a class="btn btn-primary" href="<?php echo site_url('Visiteur/se_connecter') ?>">Se connecter</a>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <script language=javascript>
-     function Affichermasquermdp() {
-  var x = document.getElementById("mdp");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-} 
-      </script> 
+</div>
+<script language=javascript>
+    function Affichermasquermdp() {
+        var x = document.getElementById("mdp");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
