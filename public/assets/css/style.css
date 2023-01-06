@@ -12,7 +12,7 @@
     float: right;
   }
 /* accueil*/
-.marque {background-color: whitesmoke;border-left-style: solid;border-color: lightgrey;min-height: 100vh;text-align:center;}
+/* .marque {background-color: whitesmoke;border-left-style: solid;border-color: lightgrey;min-height: 100vh;text-align:center;} */
 /* lister les produits */
 .categorie {background-color: whitesmoke;border-right-style: solid;border-color: lightgrey;min-height: 100vh;text-align:center;}
 /*.picture{width:255px;height:354px;background-color: white;
@@ -181,11 +181,6 @@ input:checked + .slider:before {
 body > nav.navbar.navbar-expand-sm.bg-dark.navbar-dark.fixed-bottom > div h4 {
   color: rgb(247, 244, 244);
 }
-
-
-
-
-
 
 .input-res
 {
