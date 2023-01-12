@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="col-sm-2 text-center bg-info bg-gradient bg-opacity-25 border-start border border-dark">
-      <h3>Marque:</h3>
+      <h3>Marque :</h3>
       <?php foreach ($marques as $marque) {
         echo '<h4>' . anchor('Visiteur/lister_les_produits_parmarque/' . $marque["NOMARQUE"], $marque["NOM"]) . '</h4>'; ?><?php } ?>
       <hr />

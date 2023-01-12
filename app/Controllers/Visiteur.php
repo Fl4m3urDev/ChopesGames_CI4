@@ -399,4 +399,49 @@ class Visiteur extends BaseController
         view('visiteur/connexion_administrateur').
         view('templates/footer');
     }
+
+    public function prodById(int $id)
+    {
+        $modelProd = new ModeleProduit();
+        $slug = $modelProd->retournerSlug($id);
+        //redirection   
+        if ($slug != null) {
+            return redirect()->to('jeux/' . $slug['NOMIMAGE']);
+        }
+        //else redirect 404 adaptée ?
+    }
+
+    public function prodBySlug($slug)
+    {
+        $modelProd = new ModeleProduit();
+        $id = $modelProd->retournerId($slug);
+        //pas de redirection mais invocation de la méthode déjà programmée     
+        if ($id != null) {
+            return $this->voir_un_produit($id);
+        }
+        //else redirect 404 adaptée ?
+    }
+
+    public function prodMarqueById(int $id)
+    {
+        $modelProd = new ModeleProduit();
+        $slugMarq = $modelProd->retournerMarqueSlug($id);
+        //redirection   
+        if ($slugMarq != null) {
+            return redirect()->to('game/' . $slugMarq['NOM']. '/' .$slugMarq['NOMIMAGE']);
+        }
+        //else redirect 404 adaptée ?
+    }
+
+    public function marqueBySlug($slug)
+    {
+        $modelProd = new ModeleProduit();
+        $id = $modelProd->retournerProdId($slug);
+        //pas de redirection mais invocation de la méthode déjà programmée     
+        if ($id != null) {
+            return $this->voir_un_produit($id);
+        }
+        //else redirect 404 adaptée ?
+    }
+
 }
