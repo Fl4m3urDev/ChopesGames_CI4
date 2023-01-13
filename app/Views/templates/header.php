@@ -75,7 +75,7 @@ if ($session->has('cart')) {
 
                 <?php if ($session->get('statut') == 2 or $session->get('statut') == 3) : ?>
                     <li class="nav-item dropdown">
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        <button type="button" class="btn btn-primary dropdown-toggle" role="button" data-bs-toggle="dropdown">
                             Administration
                         </button>
                         <div class="dropdown-menu">

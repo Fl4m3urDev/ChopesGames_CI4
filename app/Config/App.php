@@ -24,7 +24,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://localhost:8080/';
+    public $baseURL = 'https://louis.greta22sio.fr/Page_BTS-SIO-option-SLAM/ChopesGames_CI4/public/';
 
     /**
      * --------------------------------------------------------------------------

@@ -6,7 +6,6 @@
                     <h2 class="text-primary">Modifier les identifiants du site</h2>
 <br>
 <?php
-  echo service('validation')->listErrors();
   echo form_open('AdministrateurSuper/modifier_identifiants_bancaires_site');
 
   echo form_label('Site','txtSite',["text-primary"]);
