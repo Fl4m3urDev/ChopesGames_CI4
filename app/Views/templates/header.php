@@ -14,7 +14,8 @@ if ($session->has('cart')) {
     <link rel="alternate" type="application/rss+XML" title="ChopesGames" href="<?php echo site_url('AdministrateurSuper/flux_rss') ?>" />
 
     <link rel="stylesheet" href="<?php echo css_url('bootstrap.min') ?>">
-    <!-- <link rel="stylesheet" href="<?php // echo css_url('style') ?>"> -->
+    <!-- <link rel="stylesheet" href="<?php // echo css_url('style') 
+                                        ?>"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
 </head>
@@ -40,8 +41,20 @@ if ($session->has('cart')) {
             </ul>
         </div>
 
-
-
+        <div class="navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" role="button" data-bs-toggle="dropdown">
+                        Catégories
+                    </button>
+                    <div class="dropdown-menu">
+                        <?php foreach ($categories as $categorie) { ?>
+                            <a class="dropdown-item"><?php echo anchor('Visiteur/lister_les_produits_par_categorie/' . $categorie["NOCATEGORIE"], $categorie["LIBELLE"]) ?>
+                            <?php } ?></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
         <div class="d-flex order-0">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
