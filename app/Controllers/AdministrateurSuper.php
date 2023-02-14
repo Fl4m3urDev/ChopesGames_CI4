@@ -90,6 +90,40 @@ class AdministrateurSuper extends BaseController
         }
     }
 
+    public function ajouter_une_categorie($categorie = false)
+    {
+        // $validation =  \Config\Services::validation();
+        $modelCat = new ModeleCategorie();
+        $data['categories'] = $modelCat->retourner_categories();
+        $data['TitreDeLaPage'] = 'Ajouter une categorie';
+
+        $rules = [ //régles de validation creation
+            'txtLibelle' => 'required',
+        ];
+        if (!$this->validate($rules)) {
+            if ($_POST) $data['TitreDeLaPage'] = 'Corriger votre formulaire'; //correction
+            else {
+                if($categorie==false) {
+                    $data['TitreDeLaPage'] = 'Ajouter une categorie';
+                }
+                
+            }
+            return view('templates/header', $data).
+            view('AdministrateurSuper/ajouter_une_categorie').
+            view('templates/footer');
+        } else // si formulaire valide
+        {
+
+            $donneesAInserer = array(
+                'LIBELLE' => $this->request->getPost('txtLibelle'),
+            );
+
+            $modelCat = new ModeleCategorie();
+            $modelCat->save($donneesAInserer);
+            return redirect()->to('visiteur/lister_les_produits');
+        }
+    }
+
     public function rendre_indisponible($noProduit = null)
     {
         if ($noProduit == null) {

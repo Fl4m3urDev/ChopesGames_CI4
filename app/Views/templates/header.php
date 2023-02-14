@@ -49,7 +49,7 @@ if ($session->has('cart')) {
                     </button>
                     <div class="dropdown-menu">
                         <?php foreach ($categories as $categorie) { ?>
-                            <a class="dropdown-item"><?php echo anchor('Visiteur/lister_les_produits_par_categorie/' . $categorie["NOCATEGORIE"], $categorie["LIBELLE"]) ?>
+                            <a class="dropdown-item"><?php echo anchor('Visiteur/lister_les_produits_par_categorie/' . $categorie["NOCATEGORIE"], $categorie["LIBELLE"]); ?>
                             <?php } ?></a>
                     </div>
                 </li>
@@ -96,6 +96,7 @@ if ($session->has('cart')) {
                             <a class="dropdown-item" href="">(2Do) Commandes non traitées</a>
                             <?php if ($session->get('statut') == 3) { ?>
                                 <a class="dropdown-item" href="<?php echo site_url('AdministrateurSuper/ajouter_un_produit') ?>">Ajouter un produit</a>
+                                <a class="dropdown-item" href="<?php echo site_url('AdministrateurSuper/ajouter_une_categorie') ?>">Ajouter une categorie</a>
                                 <a class="dropdown-item" href="<?php echo site_url('AdministrateurSuper/modifier_identifiants_bancaires_site') ?>">Modifier identifiants bancaires site</a>
                             <?php } ?>
                         </div>
