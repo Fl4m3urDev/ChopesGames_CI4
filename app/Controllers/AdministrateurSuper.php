@@ -4,6 +4,7 @@ use App\Models\ModeleProduit;
 use App\Models\ModeleCategorie;
 use App\Models\ModeleIdentifiant;
 use App\Models\ModeleMarque;
+use App\Models\ModeleAdministrateur;
 
 helper(['url', 'assets', 'form']);
 
@@ -155,6 +156,48 @@ class AdministrateurSuper extends BaseController
 
             $modelMarq = new ModeleMarque();
             $modelMarq->save($donneesAInserer);
+            return redirect()->to('visiteur/lister_les_produits');
+        }
+    }
+
+    public function ajouter_un_administrateur($admin = false)
+    {
+        // $validation =  \Config\Services::validation();
+        $modelCat = new ModeleCategorie();
+        $data['categories'] = $modelCat->retourner_categories();
+        $modelMarq = new ModeleMarque();
+        $data['marques'] = $modelMarq->retourner_marques();
+
+        $data['TitreDeLaPage'] = 'Ajouter un Administrateur';
+
+        $rules = [ //regles de validation creation
+            'txtIdentifiant' => 'required',
+            'txtMdp' => 'required',
+            'txtEmail' => 'required',
+        ];
+        if (!$this->validate($rules)) {
+            if ($_POST) $data['TitreDeLaPage'] = 'Corriger votre formulaire'; //correction
+            else {
+                if($admin==false) {
+                    $data['TitreDeLaPage'] = 'Ajouter un Administrateur';
+                }
+                
+            }
+            return view('templates/header', $data).
+            view('AdministrateurSuper/ajouter_un_administrateur').
+            view('templates/footer');
+        } else // si formulaire valide
+        {
+
+            $donneesAInserer = array(
+                'IDENTIFIANT' => $this->request->getPost('txtIdentifiant'),
+                'MOTDEPASSE' => $this->request->getPost('txtMdp'),
+                'EMAIL' => $this->request->getPost('txtEmail'),
+                'PROFIL'=>'Employé',
+            );
+
+            $modelAdmin = new ModeleAdministrateur();
+            $modelAdmin->inserer_un_administrateur($donneesAInserer);
             return redirect()->to('visiteur/lister_les_produits');
         }
     }

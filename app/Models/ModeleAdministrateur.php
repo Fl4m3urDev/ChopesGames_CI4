@@ -8,7 +8,9 @@ class ModeleAdministrateur extends Model
 {
 
     protected $table = 'administrateur';
+    protected $allowedFields = ['IDENTIFIANT', 'EMAIL', 'PROFIL', 'MOTDEPASSE'];
     //protected $allowedFields = ['NOCLIENT', 'NOM', 'PRENOM', 'ADRESSE', 'VILLE', 'CODEPOSTAL', 'EMAIL', 'MOTDEPASSE'];
+    protected $primaryKey = 'IDENTIFIANT';
 
     public function retourner_administrateur($identifiant, $MotdePasse)
     {
@@ -33,5 +35,10 @@ class ModeleAdministrateur extends Model
     {
         return $this->where(['EMAIL' => $mail])
             ->first();
+    }
+
+    public function inserer_un_administrateur($pDonneesAInserer)
+    {
+        return $this->insert($pDonneesAInserer);
     }
 }
