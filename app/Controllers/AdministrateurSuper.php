@@ -171,9 +171,9 @@ class AdministrateurSuper extends BaseController
         $data['TitreDeLaPage'] = 'Ajouter un Administrateur';
 
         $rules = [ //regles de validation creation
-            'txtIdentifiant' => 'required',
-            'txtMdp' => 'required',
-            'txtEmail' => 'required',
+            'txtIdentifiant' => 'required|is_unique[administrateur.identifiant,id,{id}]',
+            'txtMdp' => 'required|min_length[12]',
+            'txtEmail' => 'required|valid_email|is_unique[administrateur.email,id,{id}]',
         ];
         if (!$this->validate($rules)) {
             if ($_POST) $data['TitreDeLaPage'] = 'Corriger votre formulaire'; //correction
@@ -200,6 +200,69 @@ class AdministrateurSuper extends BaseController
             $modelAdmin->inserer_un_administrateur($donneesAInserer);
             return redirect()->to('visiteur/lister_les_produits');
         }
+    }
+
+    public function liste_des_administrateurs()
+    {
+        // $validation =  \Config\Services::validation();
+        $modelCat = new ModeleCategorie();
+        $data['categories'] = $modelCat->retourner_categories();
+        $modelMarq = new ModeleMarque();
+        $data['marques'] = $modelMarq->retourner_marques();
+        $modelAdmin = new ModeleAdministrateur();
+        $data['admins'] = $modelAdmin->retourner_administrateurs_employes();
+
+        $data['TitreDeLaPage'] = 'Liste des administrateurs';
+
+        return view('templates/header', $data) .
+            view('AdministrateurSuper/liste_des_administrateurs') .
+            view('templates/footer');
+    }
+
+    public function modifier_un_administrateur($id)
+    {
+        // $validation =  \Config\Services::validation();
+        $modelCat = new ModeleCategorie();
+        $data['categories'] = $modelCat->retourner_categories();
+        $modelMarq = new ModeleMarque();
+        $data['marques'] = $modelMarq->retourner_marques();
+        $modelAdmin = new ModeleAdministrateur();
+        $data['admin'] = $modelAdmin->retourner_administrateur_par_id($id);
+
+        $rules = [ //regles de validation creation
+            'txtIdentifiant' => 'required|is_unique[administrateur.identifiant,id,{id}]',
+            'txtMdp' => 'required|min_length[12]',
+            'txtEmail' => 'required|valid_email|is_unique[administrateur.email,id,{id}]',
+        ];
+        if (!$this->validate($rules)) {
+            if ($_POST) $data['TitreDeLaPage'] = 'Corriger votre formulaire'; //correction
+            else {
+                    $data['TitreDeLaPage'] = 'Modifier un Administrateur';
+            }
+            return view('templates/header', $data).
+            view('AdministrateurSuper/modifier_un_administrateur').
+            view('templates/footer');
+        } else // si formulaire valide
+        {
+
+            $donneesAInserer = array(
+                'IDENTIFIANT' => $this->request->getPost('txtIdentifiant'),
+                'MOTDEPASSE' => $this->request->getPost('txtMdp'),
+                'EMAIL' => $this->request->getPost('txtEmail'),
+            );
+
+            $modelAdmin = new ModeleAdministrateur();
+            $modelAdmin->update($id, $donneesAInserer);
+            return redirect()->to('AdministrateurSuper/liste_des_administrateurs');
+        }
+    }
+    
+    public function supprimer_un_administrateur($id)
+    {
+        $modelAdmin = new ModeleAdministrateur();
+        $modelAdmin->retourner_administrateur_par_id($id);
+        $modelAdmin->delete($id);
+        return redirect()->to('AdministrateurSuper/liste_des_administrateurs');
     }
 
     public function rendre_indisponible($noProduit = null)
