@@ -8,6 +8,8 @@ class ModeleMarque extends Model
 {
 
     protected $table = 'marque';
+    protected $allowedFields = ['NOMARQUE ', 'NOM'];
+    protected $primaryKey = 'NOMARQUE';
 
     public function retourner_marques($pNoMarque = false)
     {
@@ -17,5 +19,10 @@ class ModeleMarque extends Model
         }
 
         return $this->where(['NOMARQUE' => $pNoMarque])->first();
+    }
+
+    public function inserer_une_marque($pDonneesAInserer)
+    {
+        return $this->insert($pDonneesAInserer);
     }
 }

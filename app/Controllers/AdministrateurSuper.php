@@ -124,6 +124,41 @@ class AdministrateurSuper extends BaseController
         }
     }
 
+    public function ajouter_une_marque($marque = false)
+    {
+        // $validation =  \Config\Services::validation();
+        $modelCat = new ModeleCategorie();
+        $data['categories'] = $modelCat->retourner_categories();
+        $modelMarq = new ModeleMarque();
+        $data['marques'] = $modelMarq->retourner_marques();
+
+        $rules = [ //régles de validation creation
+            'txtMarque' => 'required',
+        ];
+        if (!$this->validate($rules)) {
+            if ($_POST) $data['TitreDeLaPage'] = 'Corriger votre formulaire'; //correction
+            else {
+                if($marque==false) {
+                    $data['TitreDeLaPage'] = 'Ajouter une marque';
+                }
+                
+            }
+            return view('templates/header', $data).
+            view('AdministrateurSuper/ajouter_une_marque').
+            view('templates/footer');
+        } else // si formulaire valide
+        {
+
+            $donneesAInserer = array(
+                'NOM' => $this->request->getPost('txtMarque'),
+            );
+
+            $modelMarq = new ModeleMarque();
+            $modelMarq->save($donneesAInserer);
+            return redirect()->to('visiteur/lister_les_produits');
+        }
+    }
+
     public function rendre_indisponible($noProduit = null)
     {
         if ($noProduit == null) {
