@@ -19,7 +19,7 @@ class AdministrateurSuper extends BaseController
         $data['marques'] = $modelMarq->retourner_marques();
         $data['TitreDeLaPage'] = 'Ajouter un produit';
 
-        $rules = [ //régles de validation creation
+        $rules = [ //regles de validation creation
             'Categorie' => 'required',
             'Marque' => 'required',
             'txtLibelle' => 'required',
@@ -97,7 +97,7 @@ class AdministrateurSuper extends BaseController
         $data['categories'] = $modelCat->retourner_categories();
         $data['TitreDeLaPage'] = 'Ajouter une categorie';
 
-        $rules = [ //régles de validation creation
+        $rules = [ //regles de validation creation
             'txtLibelle' => 'required',
         ];
         if (!$this->validate($rules)) {
@@ -132,7 +132,7 @@ class AdministrateurSuper extends BaseController
         $modelMarq = new ModeleMarque();
         $data['marques'] = $modelMarq->retourner_marques();
 
-        $rules = [ //régles de validation creation
+        $rules = [ //regles de validation creation
             'txtMarque' => 'required',
         ];
         if (!$this->validate($rules)) {
