@@ -33,9 +33,9 @@ class Database extends Config
     public $default = [
         'DSN'      => '',
         'hostname' => 'localhost',
-        'username' => '',
+        'username' => 'root',
         'password' => '',
-        'database' => '',
+        'database' => 'ppe_chopesgames',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,

@@ -398,6 +398,12 @@ class Visiteur extends BaseController
         return view('templates/header', $data).
         view('visiteur/connexion_administrateur').
         view('templates/footer');
+
+        // $throttler = \Config\Services::throttler();
+        // $nbConnexions = $throttler->check('My', 3, MINUTE);
+        // if ($nbConnexions) {
+        //     $data['TitreDeLaPage'] = 'Patientez !'.strval($throttler->getTokentime());
+        // }
     }
 
     public function prodById(int $id)

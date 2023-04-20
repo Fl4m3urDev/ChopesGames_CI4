@@ -6,6 +6,7 @@
                     <?php echo form_open('Visiteur/se_connecter') ?>
                     <br>
                     <h3 class="text-center text-primary"><?php echo $TitreDeLaPage ?></h3>
+                    <!-- <input type="hidden" name="<?php csrf_token() ?>" value="<?php csrf_hash() ?>"> -->
                     <?php if ($TitreDeLaPage == 'Corriger votre formulaire') {
                         if (service('validation')->hasError('txtEmail') || service('validation')->hasError('txtMdp')) {
                             echo "Identifiants incorrects";
@@ -27,6 +28,7 @@
                         ?>
                     </p>
                     <?php
+                    echo csrf_field();
                     echo form_submit('submit', 'Valider', ['class' => 'btn btn-primary']);
                     ?>
                     <div class="text-primary right">
