@@ -1,12 +1,13 @@
+<?php $session = session();
+    if ($session->get('statut') == 1) { ?>
 <div>
     <div class="container">
         <div class="row justify-content-center align-items-center">
             <div class="col-md-6">
                 <div class="col-md-12 container">
-                    <?php echo form_open('Visiteur/se_connecter') ?>
+                    <?php echo form_open('Client/confirmation_supprimer_compte') ?>
                     <br>
                     <h3 class="text-center text-primary"><?php echo $TitreDeLaPage ?></h3>
-                    <!-- <input type="hidden" name="<?php csrf_token() ?>" value="<?php csrf_hash() ?>"> -->
                     <?php if ($TitreDeLaPage == 'Corriger votre formulaire') {
                         if (service('validation')->hasError('txtEmail') || service('validation')->hasError('txtMdp')) {
                             echo "Identifiants incorrects";
@@ -28,17 +29,18 @@
                         ?>
                     </p>
                     <?php
-                    echo csrf_field();
-                    echo form_submit('submit', 'Valider', ['class' => 'btn btn-primary']);
+                    echo form_submit('submit', 'Confirmer', ['class' => 'btn btn-primary']);
                     ?>
-                    <div class="text-primary right">
-                        <a class="btn btn-primary" href="<?php echo site_url('Visiteur/s_enregistrer') ?>">Crée un compte</a>
-                    </div>
                     <?php echo form_close() ?>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<?php } else { ?>
+    <div class="text-primary right">
+        <h1 class="display-4">Désolé vous n'avez pas accès à cette page :/<h1>
+    <?php } ?>
 </div>
 <script language=javascript>
     function Affichermasquermdp() {

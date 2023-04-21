@@ -18,13 +18,32 @@ class ModeleClient extends Model
     }
 
     public function retourner_client_par_no($noclient)
-   {
-  return $this->where(['NOCLIENT' => $noclient])->first(); 
-   } 
+    {
+        return $this->where(['NOCLIENT' => $noclient])->first();
+    }
 
-   public function retourner_clients()
-   {
-  return $this->findAll();
-   } 
+    public function retourner_clients()
+    {
+        return $this->findAll();
+    }
 
+    public function supprimer_client($mail)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('client');
+
+        $data = [
+            'NOM' => null,
+            'PRENOM'  => null,
+            'ADRESSE'  => null,
+            'VILLE'  => null,
+            'CODEPOSTAL'  => null,
+            'EMAIL'  => null,
+            'MOTDEPASSE'  => null
+        ];
+
+        $builder->set($data);
+        $builder->where('EMAIL', $mail);
+        $builder->update();
+    }
 }

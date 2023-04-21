@@ -65,13 +65,24 @@
                         // echo form_checkbox('Voir&nbsp', 'voir', false, 'onclick="Affichermasquermdp()"')
                         ?>
                     </p>
-                    <?php
-                    echo csrf_field();
-                    echo form_submit('submit', 'Valider', ['class' => 'btn btn-primary']);
-                    ?>
-                    <div class="text-primary right">
-                        <a class="btn btn-primary" href="<?php echo site_url('Visiteur/se_connecter') ?>">Se connecter</a>
-                    </div>
+                    <?php $session = session();
+                    if ($session->get('statut') == 1) { ?>
+
+
+                        <div class="d-flex justify-content-center">
+                            <a class="btn hvr-hover" href="<?php echo site_url('Client/confirmation_supprimer_compte') ?>">Droit a l'oubli</a>
+                            <input type="submit" name="submit" class="btn hvr-hover" value="Modifier les coordonnées">
+                        </div>
+
+                    <?php } else { ?>
+                        <?php
+                        echo csrf_field();
+                        echo form_submit('submit', 'Valider', ['class' => 'btn btn-primary']);
+                        ?>
+                        <div class="text-primary right">
+                            <a class="btn btn-primary" href="<?php echo site_url('Visiteur/se_connecter') ?>">Se connecter</a>
+                        <?php } ?>
+                        </div>
                     </form>
                 </div>
             </div>

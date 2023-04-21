@@ -548,4 +548,53 @@ ET PROBLEME AVEC IDENTIFIANT SITE SYSTEMATIQUE ! ! !
         view('Client/details_commande').
         view('templates/footer');
     }
+
+    public function confirmation_supprimer_compte()
+    {
+      helper(['form']);
+      $session = session();
+      $rules = [ //règles de validation
+          'txtEmail' => 'required|valid_email|is_not_unique[client.EMAIL,id,{id}]',
+          'txtMdp'   => 'required|is_not_unique[client.MOTDEPASSE,id,{id}]'
+      ];
+      if (!$this->validate($rules)) {
+          if ($this->request->getPost()) { // si c'est une tentative d'enregistrement
+              $data['TitreDeLaPage'] = "Corriger votre formulaire";
+          }
+          else   $data['TitreDeLaPage'] = "Veuillez confirmer la suppression";
+      } else {
+          $modelCli = new ModeleClient();
+          $Identifiant = esc($this->request->getPost('txtEmail'));
+          $MdP = esc($this->request->getPost('txtMdp'));
+
+          $UtilisateurRetourne = $modelCli->retourner_clientParMail($Identifiant);
+
+          if (!$UtilisateurRetourne == null) {
+              if ($MdP == $UtilisateurRetourne["MOTDEPASSE"]) {
+                  if (!empty($session->get('statut'))) {
+                      unset($_SESSION['cart']);
+                  }
+                  $session->set('id', $UtilisateurRetourne["NOCLIENT"]);
+                  $session->set('statut', 1);
+                  return redirect()->to('Client/droit_a_oublie/'.$Identifiant);
+              } 
+          } 
+      }
+      
+      $modelCat = new ModeleCategorie();
+      $data['categories'] = $modelCat->retourner_categories();
+      
+      return view('templates/header', $data)
+      .view('client/confirmation_supprimer_compte')
+      .view('templates/footer');
+    }
+
+    public function droit_a_oublie($email)
+    {
+      $session = session();
+      $modelCli = new ModeleClient();
+      $client= $modelCli->supprimer_client($email);
+      $session->destroy();
+      return redirect()->to('Visiteur/accueil');
+    }
 }
