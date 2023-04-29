@@ -70,7 +70,7 @@
 
 
                         <div class="d-flex justify-content-center">
-                            <a class="btn hvr-hover" href="<?php echo site_url('Client/confirmation_supprimer_compte') ?>">Droit a l'oubli</a>
+                            <a class="btn hvr-hover" href="<?php echo site_url('Client/droit_oublie/'.$txtEmail) ?>">Droit a l'oubli</a>
                             <input type="submit" name="submit" class="btn hvr-hover" value="Modifier les coordonnées">
                         </div>
 

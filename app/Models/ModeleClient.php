@@ -33,13 +33,13 @@ class ModeleClient extends Model
         $builder = $db->table('client');
 
         $data = [
-            'NOM' => null,
-            'PRENOM'  => null,
-            'ADRESSE'  => null,
-            'VILLE'  => null,
-            'CODEPOSTAL'  => null,
-            'EMAIL'  => null,
-            'MOTDEPASSE'  => null
+            'NOM' => '',
+            'PRENOM'  => '',
+            'ADRESSE'  => '',
+            'VILLE'  => '',
+            'CODEPOSTAL'  => '',
+            'EMAIL'  => '',
+            'MOTDEPASSE'  => ''
         ];
 
         $builder->set($data);
