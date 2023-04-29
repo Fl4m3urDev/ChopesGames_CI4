@@ -60,21 +60,21 @@ class ContentSecurityPolicy extends BaseConfig
      *
      * @var string|string[]
      */
-    public $scriptSrc = 'self';
+    public $scriptSrc = ['self', 'localhost', 'cdn.jsdelivr.net'];
 
     /**
      * Lists allowed stylesheets' URLs.
      *
      * @var string|string[]
      */
-    public $styleSrc = 'self';
+    public $styleSrc = ['self', 'localhost', 'cdn.jsdelivr.net'];
 
     /**
      * Defines the origins from which images can be loaded.
      *
      * @var string|string[]
      */
-    public $imageSrc = 'self';
+    public $imageSrc = ['self', 'localhost'];
 
     /**
      * Restricts the URLs that can appear in a page's `<base>` element.

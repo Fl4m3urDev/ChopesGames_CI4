@@ -17,6 +17,7 @@ if ($session->has('cart')) {
     <!-- <link rel="stylesheet" href="<?php // echo css_url('style') 
                                         ?>"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 </head>
 
@@ -101,6 +102,7 @@ if ($session->has('cart')) {
                                 <a class="dropdown-item" href="<?php echo site_url('AdministrateurSuper/ajouter_un_administrateur') ?>">Ajouter un administrateur</a>
                                 <a class="dropdown-item" href="<?php echo site_url('AdministrateurSuper/liste_des_administrateurs') ?>">Liste des administrateurs</a>
                                 <a class="dropdown-item" href="<?php echo site_url('AdministrateurSuper/modifier_identifiants_bancaires_site') ?>">Modifier identifiants bancaires site</a>
+                                <a class="dropdown-item" href="<?php echo site_url('AdministrateurSuper/saisie_lettre_information') ?>">Newsletter</a>
                             <?php } ?>
                         </div>
                     </li>
@@ -117,7 +119,7 @@ if ($session->has('cart')) {
                                 <a class="dropdown-item" href="<?php echo site_url('Client/historique_des_commandes') ?>">Mes commandes</a>
                                 <a class="dropdown-item" href="<?php echo site_url('Visiteur/s_enregistrer') ?>">Modifier son compte</a>
                             <?php } elseif ($session->get('statut') == 3) { ?>
-                                <a class="dropdown-item" href="?>">(2Do) Modifier son compte</a>
+                                <a class="dropdown-item" href="<?php  echo site_url('AdministrateurSuper/modifier_un_administrateur/'.$session->get('identifiant'))?>">Modifier son compte</a>
                             <?php } ?>
                             <a class="dropdown-item" href="<?php echo site_url('Client/se_de_connecter') ?>">Se déconnecter</a>
                         <?php } else { ?>

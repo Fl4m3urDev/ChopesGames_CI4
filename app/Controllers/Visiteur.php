@@ -8,9 +8,10 @@ use App\Models\ModeleClient;
 use App\Models\ModeleCategorie;
 use App\Models\ModeleMarque;
 use App\Models\ModeleAdministrateur;
-//use App\Models\ModeleAdministrateur;
+use App\Models\ModeleAbonne;
+use App\Models\ModeleNouvelle;
 //$pager = \Config\Services::pager();
-helper(['url', 'assets']);
+helper(['url', 'assets', 'form']);
 class Visiteur extends BaseController
 {
 
@@ -448,6 +449,30 @@ class Visiteur extends BaseController
             return $this->voir_un_produit($id);
         }
         //else redirect 404 adaptée ?
+    }
+
+    public function abonne()
+    {
+        helper(['form']);
+        $email = \Config\Services::email();
+        $modelAbo = new ModeleAbonne();
+        $data['title'] = 'ChopeGames - Vente de jeux vidéos';
+        $emailClient = esc($this->request->getPost('txtEmail'));
+        $rules = [
+            'txtEmail' => 'required|valid_email|is_unique[abonne.EMAIL]',
+        ];
+        if ($this->validate($rules)){
+            $email->setSubject('Inscription à la Newsletter de ChopesGames');
+            $email->setFrom('louis.baye@outlook.fr', 'ChopeGames', 'louis.baye@outlook.fr');
+            $email->setTo($emailClient);
+            $message = "Ceci est un message automatique, merci de ne pas répondre. Nous sommes ravis de vous acceuillir dans notre équipe ! Voici le mail de confirmation pour votre inscription sur notre site. Vous pouvez nous signaler votre retrait en nous envoyant un mail intitulé 'Droit à l'oublie'. Pour ces demandes, un délai de 30 jours nous est accordé pour faire le nécessaire, un mail de confirmation vous sera envoyer manuellement.
+            L'équipe de ChopesGames vous souhaite une bonne journée !";
+            $email->setMessage($message);
+            $email->send();
+        } else {
+            echo '<div class="text-white">Déjà abonné</div>';
+        }
+        return redirect()->to('Visiteur/accueil');
     }
 
 }

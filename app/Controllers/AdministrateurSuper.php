@@ -5,6 +5,8 @@ use App\Models\ModeleCategorie;
 use App\Models\ModeleIdentifiant;
 use App\Models\ModeleMarque;
 use App\Models\ModeleAdministrateur;
+use App\Models\ModeleNouvelle;
+use App\Models\ModeleAbonne;
 
 helper(['url', 'assets', 'form']);
 
@@ -390,6 +392,42 @@ class AdministrateurSuper extends BaseController
 
             $modelIdent->update(1, $donneesAInserer);
             return redirect()->to('visiteur/lister_les_produits');
+        }
+    }
+
+    public function saisie_lettre_information($email = false)
+    {
+        $validation = \Config\Services::validation();
+        $modelCat = new ModeleCategorie();
+        $data['categories'] = $modelCat->retourner_categories();
+        $ModelAbo = new ModeleAbonne();
+        $data['mailAbonne'] = $ModelAbo->recuperer_mail($email);
+        $ModelNouv = new ModeleNouvelle();
+        $data['lettreInfo'] = $ModelNouv->retourner_lettre();
+        $data['TitreDeLaPage'] = "Saisie lettre d'information";
+        $rules = [
+            'txtObjet' => 'required',
+            'txtTitre' => 'required',
+            'txtMessage' => 'required',
+        ];
+        if (!$this->validate($rules)) {
+            if ($_POST) $data['TitreDeLaPage'] = 'Corriger votre formulaire'; //correction
+            else {
+                if ($email == false) {
+                    $data['TitreDeLaPage'] = "Saisie lettre d'information";
+                }
+            }
+            return view('templates/header', $data).
+            view('AdministrateurSuper/saisie_lettre_information').
+            view('templates/footer');
+        } else {
+            $donneesAInserer = array(
+                'OBJET' => $this->request->getPost('txtObjet'),
+                'TITRE' => $this->request->getPost('txtTitre'),
+                'MESSAGE' => $this->request->getPost('txtMessage'),
+            );
+            $ModelNouv->insert($donneesAInserer);
+            return redirect()->to('visiteur/accueil');
         }
     }
 }
