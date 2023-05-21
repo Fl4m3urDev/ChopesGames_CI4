@@ -24,7 +24,7 @@ class ContentSecurityPolicy extends BaseConfig
      *
      * @var bool
      */
-    public $reportOnly = false;
+    public $reportOnly = true;
 
     /**
      * Specifies a URL where a browser will send reports

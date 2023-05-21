@@ -25,7 +25,7 @@ if ($session->has('cart')) {
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="<?php echo site_url('Visiteur/accueil') ?>">
-                <img class="d-block" style="width:60px;height:38px;'" src="<?php echo base_url() . '/assets/images/logo.jpg' ?>" alt="Logo">
+                <img class="d-block" src="<?php echo base_url() . '/assets/images/logo.jpg' ?>" alt="Logo">
             </a>
             <ul class="d-flex gap-3 navbar-nav">
 
@@ -50,8 +50,7 @@ if ($session->has('cart')) {
                     </button>
                     <div class="dropdown-menu">
                         <?php foreach ($categories as $categorie) { ?>
-                            <a class="dropdown-item"><?php echo anchor('Visiteur/lister_les_produits_par_categorie/' . $categorie["NOCATEGORIE"], $categorie["LIBELLE"]); ?>
-                            <?php } ?></a>
+                            <a class="dropdown-item"><?php echo anchor('Visiteur/lister_les_produits_par_categorie/' . $categorie["NOCATEGORIE"], $categorie["LIBELLE"]); ?><?php } ?></a>
                     </div>
                 </li>
             </ul>
@@ -94,7 +93,7 @@ if ($session->has('cart')) {
                         </button>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="<?php echo site_url('AdministrateurEmploye/afficher_les_clients') ?>">Clients->Commandes</a>
-                            <a class="dropdown-item" href="">(2Do) Commandes non traitées</a>
+                            <a class="dropdown-item" href="<?php echo site_url('AdministrateurEmploye/commande_non_traitees') ?>">Commandes non traitées</a>
                             <?php if ($session->get('statut') == 3) { ?>
                                 <a class="dropdown-item" href="<?php echo site_url('AdministrateurSuper/ajouter_un_produit') ?>">Ajouter un produit</a>
                                 <a class="dropdown-item" href="<?php echo site_url('AdministrateurSuper/ajouter_une_categorie') ?>">Ajouter une categorie</a>
@@ -119,7 +118,7 @@ if ($session->has('cart')) {
                                 <a class="dropdown-item" href="<?php echo site_url('Client/historique_des_commandes') ?>">Mes commandes</a>
                                 <a class="dropdown-item" href="<?php echo site_url('Visiteur/s_enregistrer') ?>">Modifier son compte</a>
                             <?php } elseif ($session->get('statut') == 3) { ?>
-                                <a class="dropdown-item" href="<?php  echo site_url('AdministrateurSuper/modifier_un_administrateur/'.$session->get('identifiant'))?>">Modifier son compte</a>
+                                <a class="dropdown-item" href="<?php echo site_url('AdministrateurSuper/modifier_un_administrateur/' . $session->get('identifiant')) ?>">Modifier son compte</a>
                             <?php } ?>
                             <a class="dropdown-item" href="<?php echo site_url('Client/se_de_connecter') ?>">Se déconnecter</a>
                         <?php } else { ?>

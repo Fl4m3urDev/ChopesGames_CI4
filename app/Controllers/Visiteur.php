@@ -453,7 +453,6 @@ class Visiteur extends BaseController
 
     public function abonne()
     {
-        helper(['form']);
         $email = \Config\Services::email();
         $modelAbo = new ModeleAbonne();
         $data['title'] = 'ChopeGames - Vente de jeux vidéos';

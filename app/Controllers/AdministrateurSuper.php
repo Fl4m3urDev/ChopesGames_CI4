@@ -7,6 +7,7 @@ use App\Models\ModeleMarque;
 use App\Models\ModeleAdministrateur;
 use App\Models\ModeleNouvelle;
 use App\Models\ModeleAbonne;
+// use app\Config\Email;
 
 helper(['url', 'assets', 'form']);
 

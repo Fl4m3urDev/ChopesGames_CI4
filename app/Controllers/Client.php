@@ -8,7 +8,7 @@ use App\Models\ModeleIdentifiant;
 use App\Models\Modele_commande;
 use App\Models\ModeleLigne;
 
-helper(['url', 'assets']);
+helper(['url', 'assets', 'form']);
 class client extends BaseController
 {
     public function se_de_connecter()

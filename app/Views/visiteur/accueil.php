@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-10">
       <div class="container">
-        <div class="container" style="width:300px;height:380px;">
+        <div class="container">
           <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <ol class="carousel-indicators">
               <?php $countcarousel = 0;
