@@ -313,6 +313,7 @@ class Visiteur extends BaseController
 
     public function se_connecter()
     {
+
         helper(['form']);
         $session = session();
         $rules = [ //régles de validation

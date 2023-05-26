@@ -40,35 +40,36 @@ class Email extends BaseConfig
      *
      * @var string
      */
-    public $mailPath = '/usr/sbin/sendmail';
+    // public $mailPath = '/usr/sbin/sendmail';
 
     /**
      * SMTP Server Address
      *
      * @var string
      */
-    public $SMTPHost='smtp.googlemail.com';
+    // public $SMTPHost='smtp.googlemail.com';
+    public $SMTPHost='localhost';
 
     /**
      * SMTP Username
      *
      * @var string
      */
-    public $SMTPUser='chopesgames.110@gmail.com';
+    // public $SMTPUser='chopesgames.110@gmail.com';
 
     /**
      * SMTP Password
      *
      * @var string
      */
-    public $SMTPPass='Chopes.110';
+    // public $SMTPPass='Chopes.110';
 
     /**
      * SMTP Port
      *
      * @var int
      */
-    public $SMTPPort = 465;
+    // public $SMTPPort = 465;
 
     /**
      * SMTP Timeout (in seconds)
@@ -89,7 +90,7 @@ class Email extends BaseConfig
      *
      * @var string
      */
-    public $SMTPCrypto = 'ssl';
+    // public $SMTPCrypto = 'ssl';
 
     /**
      * Enable word-wrap
