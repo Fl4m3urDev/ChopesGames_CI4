@@ -463,9 +463,14 @@ class Visiteur extends BaseController
         ];
         if ($this->validate($rules)){
             $email->setSubject('Inscription à la Newsletter de ChopesGames');
-            $email->setFrom('louis.baye@outlook.fr', 'ChopeGames', 'louis.baye@outlook.fr');
+            $email->setFrom('master@chopesgames.com', 'ChopeGames', 'master@chopesgames.com');
             $email->setTo($emailClient);
-            $message = "Ceci est un message automatique, merci de ne pas répondre. Nous sommes ravis de vous acceuillir dans notre équipe ! Voici le mail de confirmation pour votre inscription sur notre site. Vous pouvez nous signaler votre retrait en nous envoyant un mail intitulé 'Droit à l'oublie'. Pour ces demandes, un délai de 30 jours nous est accordé pour faire le nécessaire, un mail de confirmation vous sera envoyer manuellement.
+            $message = "Ceci est un message automatique, merci de ne pas répondre.
+            Nous sommes ravis de vous acceuillir dans notre équipe !
+            Voici le mail de confirmation pour votre inscription sur notre site.
+            Vous pouvez nous signaler votre retrait en nous envoyant un mail intitulé 'Droit à l'oublie'.
+            Pour ces demandes, un délai de 30 jours nous est accordé pour faire le nécessaire,
+            un mail de confirmation vous sera envoyer manuellement.
             L'équipe de ChopesGames vous souhaite une bonne journée !";
             $email->setMessage($message);
             $email->send();

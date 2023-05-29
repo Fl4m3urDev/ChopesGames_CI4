@@ -6,11 +6,12 @@
                     <br>
                     <h2 class="text-primary"><?php echo $TitreDeLaPage ?></h2>
                     <br>
-                    <table class="table table-hover">
+                    <table class="table">
+                    <tbody>
                         <?php
                         foreach ($admins as $admin) {
                         ?>
-                            <tr class="bg-secondary bg-gradient bg-opacity-25 border border-dark">
+                            <tr>
                                 <td> <?php echo $admin['IDENTIFIANT']; ?></td>
                                 <td><a class="text-white" href="<?php echo site_url('AdministrateurSuper/modifier_un_administrateur/'.$admin['IDENTIFIANT'])?>"><button class="btn btn-primary">Modifier</button></a>
                                 </td>

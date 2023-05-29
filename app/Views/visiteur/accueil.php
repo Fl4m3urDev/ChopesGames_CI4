@@ -1,8 +1,10 @@
-<div class="container-fluid py-4">
+<div class="container-fluid">
+  <h1 class='titrepage mt-2'>Accueil</h1>
+  <hr />
   <div class="row">
     <div class="col-sm-10">
       <div class="container">
-        <div class="container">
+        <div class="container w-25 h-25">
           <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <ol class="carousel-indicators">
               <?php $countcarousel = 0;
