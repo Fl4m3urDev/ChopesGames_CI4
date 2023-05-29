@@ -18,7 +18,7 @@
                         <div class="col-mb-6 col-sm-3">
                             <div class="d-block position-relative text-center border border-3 rounded">
                                 <div class="d-block position-relative bg-white img-responsive">
-                                    <a href="<?php echo base_url() . 'Visiteur/voir_un_produit/' . $unProduit["NOPRODUIT"] ?>">
+                                    <a href="<?php echo base_url('Visiteur/voir_un_produit/' . $unProduit["NOPRODUIT"]) ?>">
                                         <?php
                                         if (!empty($unProduit["NOMIMAGE"])) echo img_class($unProduit["NOMIMAGE"] . '.jpg', $unProduit["LIBELLE"], 'img-responsive w-100');
                                         else echo img_class('nonimage.jpg', $unProduit["LIBELLE"], 'img-responsive w-100');
@@ -41,10 +41,10 @@
                                     <?php if ($session->get('statut') == 3) {
                                         if ($unProduit["DISPONIBLE"] == 0) {
                                     ?>
-                                            <a class="d-inline-block fs-6 fw-light text-light bg-warning border border-2" href="<?php echo site_url('AdministrateurSuper/rendre_disponible/' . $unProduit["NOPRODUIT"]);  ?>">Rendre disponible</a>
+                                            <a class="d-inline-block fs-6 fw-light text-light bg-warning border border-2 rounded border-dark btn" href="<?php echo site_url('AdministrateurSuper/rendre_disponible/' . $unProduit["NOPRODUIT"]);  ?>">Rendre disponible</a>
                                         <?php } else { ?>
 
-                                            <a class="d-inline-block fs-6 fw-light text-light bg-danger border border-2" href="<?php echo site_url('AdministrateurSuper/rendre_indisponible/' . $unProduit["NOPRODUIT"]);  ?>">Rendre indisponible</a>
+                                            <a class="d-inline-block fs-6 fw-light text-light bg-danger border border-2 rounded border-dark btn" href="<?php echo site_url('AdministrateurSuper/rendre_indisponible/' . $unProduit["NOPRODUIT"]);  ?>">Rendre indisponible</a>
                                         <?php } ?>
                                     <?php } else { ?>
                                         <?php if ($unProduit["DISPONIBLE"] == 0) {
